@@ -1,7 +1,10 @@
-
 {{ define "main" }}
   <h1>{{ .Title }}</h1>
   {{ dateFormat "2006年1月2日" .Date }}
+  <br>
+  {{ range (.GetTerms "tags") }}
+    <a href="{{ .Permalink }}">{{ .LinkTitle }}</a>
+  {{ end }}
   {{ .TableOfContents }}
   {{ .Content }}
 {{ end }}
