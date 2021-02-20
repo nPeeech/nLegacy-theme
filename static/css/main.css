@@ -1,3 +1,6 @@
+body{
+    margin: 0px;
+}
 code:not([class]){
     background-color: whitesmoke;
 }
