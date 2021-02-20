@@ -1,0 +1,6 @@
+code:not([class]){
+    background-color: whitesmoke;
+}
+#TableOfContents{
+    border: 1px solid black;
+}
