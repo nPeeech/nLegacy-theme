@@ -1,8 +1,8 @@
 <header style="text-align: center;">
-    <div style="padding: 15px 0px; background-color: rgb(223, 183, 213);">
+    <div style="padding-bottom: 60px; background-color: rgb(223, 183, 213);">
         <a href="{{ .Site.BaseURL }}" style="text-decoration: none;">
             <h1
-                style="display: inline; background: linear-gradient( to right, rgb(156, 88, 219), red, yellow, green, rgb(52, 52, 255), rgb(156, 88, 219)); background-clip: text; -webkit-background-clip: text; color: transparent; filter: drop-shadow(1px 1px 0px rgb(59, 0, 102)) drop-shadow(2px 2px 0px rgb(59, 0, 102)) drop-shadow(3px 3px 0px rgb(59, 0, 102)) drop-shadow(4px 4px 0px rgb(59, 0, 102)) drop-shadow(5px 5px 0px rgb(59, 0, 102)) drop-shadow(6px 6px 0px rgb(59, 0, 102));">
+                style="display: inline; background: linear-gradient( to right, rgb(156, 88, 219), red, yellow, green, rgb(52, 52, 255), rgb(156, 88, 219)); background-clip: text; -webkit-background-clip: text; color: transparent; filter: {{ range $val := seq 10 }} drop-shadow({{$val}}px {{$val}}px 0px rgb(59, 0, 102)) {{ end }};">
                 {{ .Site.Title }}</h1>
         </a>
     </div>
