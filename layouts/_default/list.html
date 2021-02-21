@@ -10,7 +10,9 @@
             <h2><a href="{{.Permalink}}">{{.Title}}</a></h2>
             <ul>
                 <li>
-                    <p class="article-date">{{ dateFormat "2006年1月2日" .Date }}</p>
+                    {{ range (.GetTerms "archives" )}}
+                    <a class="article-date" href="{{ .Permalink }}">{{ dateFormat "2006年1月2日" .Date }}</a>
+                    {{ end }}
                 </li>
                 <li>
                     {{ range (.GetTerms "tags") }}

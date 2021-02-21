@@ -1,7 +1,8 @@
 {{ define "main" }}
-  {{ dateFormat "2006年1月2日" .Date }}
+  {{ range (.GetTerms "archives" )}}
+    <a class="article-date" href="{{ .Permalink }}">{{ dateFormat "2006年1月2日" .Date }}</a>
+  {{ end }}
   <h1>{{ .Title }}</h1>
-  <br>
   {{ range (.GetTerms "tags") }}
     <a class="article-tag" href="{{ .Permalink }}">{{ .LinkTitle }}</a>
   {{ end }}
