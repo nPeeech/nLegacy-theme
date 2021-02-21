@@ -12,7 +12,7 @@ article {
 
 .article-tag {
     text-decoration: none;
-    background: linear-gradient(to bottom, azure, aqua, azure);
-    border: 1px solid lightgrey;
+    background: linear-gradient(to bottom, lightcyan, darkturquoise, lightcyan);
+    padding: 2px;
     margin: 5px;
 }
