@@ -1,7 +1,5 @@
-<footer style="background-color: whitesmoke;">
-    <div>
-        <p style="text-align: center;">
-            &copy; {{ dateFormat "2006" .Date }} {{ .Site.Params.AuthorName }}.
-        </p>
-    </div>
+<footer>
+    <p id="copyright">
+        &copy; {{ now.Format "2006" }} {{ .Site.Params.AuthorName }}.
+    </p>
 </footer>
