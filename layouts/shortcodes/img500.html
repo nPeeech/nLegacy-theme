@@ -1,0 +1,11 @@
+{{ $src := .Get "src" }}
+{{ if not $src }}
+	{{ $src = .Get 0 }}
+{{ end }}
+{{ $original := .Page.Resources.GetMatch $src }}
+{{ if $original }}
+	{{ $resized := $original.Fit "500x500 jpg q70" }}
+	<a href="{{ $original.Permalink }}">
+		<img src="{{ $resized.Permalink }}" alt="{{ .Get " alt" }}" style="width: min(100%, 500px);">
+	</a>
+{{ end }}
