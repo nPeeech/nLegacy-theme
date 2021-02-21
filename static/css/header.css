@@ -5,7 +5,8 @@
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
-    font-weight: bold;
+    font-weight: bolder;
+    font-family: serif;
 }
 
 #main-logo-wrapper {
