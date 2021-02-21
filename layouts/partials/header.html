@@ -1,14 +1,18 @@
-<header style="text-align: center;">
-    <div style="padding-bottom: 60px; background-color: rgb(223, 183, 213);">
-        <a href="{{ .Site.BaseURL }}" style="text-decoration: none;">
-            <h1
-                style="display: inline; background: linear-gradient( to right, rgb(156, 88, 219), red, yellow, green, rgb(52, 52, 255), rgb(156, 88, 219)); background-clip: text; -webkit-background-clip: text; color: transparent; filter: {{ range $val := seq 10 }} drop-shadow({{$val}}px {{$val}}px 0px rgb(59, 0, 102)) {{ end }};">
-                {{ .Site.Title }}</h1>
-        </a>
+<header>
+    <div id="header-visual">
+        <div id="main-logo-wrapper">
+            <a href="{{ .Site.BaseURL }}" id="main-logo"
+                style="filter: {{ range $val := seq 10 }} drop-shadow({{$val}}px {{$val}}px 0px rgb(59, 0, 102)) {{ end }};">
+                {{ .Site.Title }}
+            </a>
+        </div>
+        <div id="counter-wrapper">
+            あなたは<div id="counter"></div>人目の訪問者です
+        </div>
     </div>
-    <div style="background: linear-gradient(to bottom, rgb(223, 183, 213), rgb(207, 83, 187), rgb(223, 183, 213)); ">
+    <div id="taxonomy-menu">
         {{ range $taxonomyname, $taxonomy := .Site.Taxonomies }}
-            <a href="{{ "/" | relLangURL}}{{ $taxonomyname | urlize }}" style="text-decoration: none; margin: 0px 10px; color: rgb(53, 0, 104); background: linear-gradient(to bottom, rgb(223, 183, 213), rgb(207, 83, 187), rgb(223, 183, 213));">{{- $taxonomyname -}}</a>
+        <a href='{{ " /" | relLangURL}}{{ $taxonomyname | urlize }}' class="taxonomy-btn">{{- $taxonomyname -}}</a>
         {{ end }}
     </div>
 </header>
