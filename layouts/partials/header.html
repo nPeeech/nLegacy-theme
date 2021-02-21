@@ -12,7 +12,7 @@
     </div>
     <div id="taxonomy-menu">
         {{ range $taxonomyname, $taxonomy := .Site.Taxonomies }}
-        <a href='{{ .Site.BaseURL }}{{ $taxonomyname | urlize }}' class="taxonomy-btn">{{- $taxonomyname -}}</a>
+        <a href='{{ $.Site.BaseURL }}{{ $taxonomyname | urlize }}' class="taxonomy-btn">{{- $taxonomyname -}}</a>
         {{ end }}
     </div>
 </header>

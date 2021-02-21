@@ -1,5 +1,7 @@
 {{ define "main" }}
-{{ .Title }}
+{{ if not .IsHome }}
+    {{ .Title }}
+{{ end }}
 {{.Content}}
 <table>
     {{range .Pages}}
