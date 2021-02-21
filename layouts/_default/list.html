@@ -1,17 +1,32 @@
 {{ define "main" }}
 {{ if not .IsHome }}
-    {{ .Title }}
+{{ .Title }}
 {{ end }}
-{{.Content}}
-<table>
-    {{range .Pages}}
-    <tr>
-        <td style="border: 1px solid black;"><a href="{{.Permalink}}">{{.Title}}</a></td>
-        <td style="border: 1px solid black; color: green;">{{ dateFormat "2006年1月2日" .Date }}</td>
-    </tr>
-    <tr>
-        <td colspan="2" style="border: 1px solid black; color: brown;">{{ .Summary }} （文字数）</td>
-    </tr>
-    {{end}}
-</table>
+{{ .Content }}
+{{ range .Pages }}
+<article>
+    <ul>
+        <li>
+            <h2><a href="{{.Permalink}}">{{.Title}}</a></h2>
+            <ul>
+                <li>
+                    <p class="article-date">{{ dateFormat "2006年1月2日" .Date }}</p>
+                </li>
+                <li>
+                    {{ range (.GetTerms "tags") }}
+                    <a class="article-tag" href="{{ .Permalink }}">{{ .LinkTitle }}</a>
+                    {{ end }}
+                </li>
+                <li>
+                    <p class="article-summary">{{ .Summary }} （文字数）</p>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <p>
+    </p>
+    <p>
+    </p>
+</article>
+{{ end }}
 {{ end }}

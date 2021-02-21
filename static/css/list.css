@@ -1,0 +1,18 @@
+.article-summary {
+    color: brown;
+}
+
+.article-date {
+    color: green;
+}
+
+article {
+    margin-bottom: 50px;
+}
+
+.article-tag {
+    text-decoration: none;
+    background: linear-gradient(to bottom, azure, aqua, azure);
+    border: 1px solid lightgrey;
+    margin: 5px;
+}

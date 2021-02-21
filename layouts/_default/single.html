@@ -3,7 +3,7 @@
   <h1>{{ .Title }}</h1>
   <br>
   {{ range (.GetTerms "tags") }}
-    <a href="{{ .Permalink }}">{{ .LinkTitle }}</a>
+    <a class="article-tag" href="{{ .Permalink }}">{{ .LinkTitle }}</a>
   {{ end }}
   {{ .TableOfContents }}
   {{ .Content }}

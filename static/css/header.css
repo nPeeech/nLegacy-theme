@@ -5,10 +5,13 @@
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
+    font-weight: bold;
 }
 
 #main-logo-wrapper {
     margin-bottom: 50px;
+    margin-right: 50px;
+    margin-left: 50px;
 }
 
 .frame {
