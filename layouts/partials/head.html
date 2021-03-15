@@ -9,6 +9,19 @@
     <link rel="stylesheet" href="/css/list.css">
     <link rel="stylesheet" href="/css/baseof.css">
     <script src="/js/header.js"></script>
+    {{ if not .Site.IsServer }}
+    {{ with .Site.GoogleAnalytics }}
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ . }}"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', '{{ . }}');
+    </script>
+    {{ end }}
+    {{ end }}
     <meta name="msapplication-square70x70logo" content="/favicon/site-tile-70x70.png">
     <meta name="msapplication-square150x150logo" content="/favicon/site-tile-150x150.png">
     <meta name="msapplication-wide310x150logo" content="/favicon/site-tile-310x150.png">
