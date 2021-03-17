@@ -65,8 +65,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon/icon-16x16.png">
     <link rel="icon" type="image/png" sizes="24x24" href="/favicon/icon-24x24.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/icon-32x32.png">
-    <title>{{ block "title" . }}
-        {{ .Site.Title }}
-        {{ end }}
+    <title>
+        {{ if not .IsHome }} {{ .Title }} | {{ end }} {{ .Site.Title }}
     </title>
 </head>
