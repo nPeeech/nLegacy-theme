@@ -8,7 +8,7 @@
 {{ end }}
 {{ $original := .Page.Resources.GetMatch $src }}
 {{ if $original }}
-	{{ $resized := $original.Fit "500x500 jpg q70" }}
+	{{ $resized := $original.Fit "400x400 jpg q70" }}
 	<figure style="display: inline-block;
 	border: thin #000000 solid;
 	border-radius: 8px;
