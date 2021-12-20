@@ -5,5 +5,5 @@
 
 {{ $3dmodel := .Page.Resources.GetMatch $src }}
 {{ if $3dmodel }}
-<model-viewer src="{{ $3dmodel.Permalink }}" alt="A 3D model of {{ $3dmodel }}" camera-controls style="width: min(95vw, 500px); height: min(95vw, 500px);"></model-viewer>
+<model-viewer src="{{ $3dmodel.Permalink }}" alt="A 3D model of {{ $3dmodel }}" camera-controls style="width: 100%; height: min(50vh, 900px);"></model-viewer>
 {{ end }}
