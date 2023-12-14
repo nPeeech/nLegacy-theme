@@ -72,6 +72,48 @@
         {{ if not .IsHome }} {{ .Title }} | {{ end }} {{ .Site.Title }}
     </title>
 
+    <!-- Front-MatterのimagesでOGP用の画像が指定されていればおとなしくHugo標準のものを使う -->
+    <!-- 指定が無ければタイトルから画像を自動生成する -->
+    <!-- OGP, Twitterカードのための画像を記事タイトルから生成する -->
+    {{ if .Params.images }}
     {{ template "_internal/opengraph.html" . }}
     {{ template "_internal/twitter_cards.html" . }}
+    {{ else }}
+    {{ $font := resources.Get "GenJyuuGothic/GenJyuuGothic-Regular.ttf" }}
+    {{ $image := resources.Get "ogp_template.png"}}
+
+    {{ $title := .Title }}
+    {{ $summary := .Summary }}
+    {{ $url := .Permalink }}
+    {{ $publish_date := .PublishDate}}
+    {{ $modification_date := .Lastmod }}
+
+    {{ with $image }}
+    {{ $opts := dict
+    "color" "#000000"
+    "font" $font
+    "linespacing" 2
+    "size" 50
+    "x" 100
+    "y" 250
+    }}
+    {{ $filter := images.Text $title $opts }}
+    {{ $image := $image | images.Filter $filter }}
+    {{ $image_url := print $image.Permalink "?" now.Unix }}
+    <meta property="og:title" content="{{ $title }}">
+    <meta property="og:description" content="{{ $summary }}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{{ $url }}">
+    <meta property="og:image" content="{{ $image_url }}">
+    <meta property="article:section" content="">
+    <meta property="article:published_time" content="{{ $publish_date }}">
+    <meta property="article:modified_time" content="{{ $modification_date }}">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="{{ $image_url }}">
+    <meta name="twitter:title" content="{{ $title }}">
+    <meta name="twitter:description" content="{{ $summary }}">
+    {{ end }}
+
+    {{ end }}
 </head>
