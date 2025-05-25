@@ -13,6 +13,8 @@
 {{ $count = add $count 1 }}
 {{ .Page.Scratch.Set "imgXXcounter" $count }}
 {{ $resized := $original.Fit "400x400 jpg q70" }}
+{{/* ページ内で一度だけCSSスタイルを注入するためのフラグチェック */}}
+{{ if not (.Page.Scratch.Get "imgXXStyleInjected") }}
 <style>
 	.imgXX-modal {
 		padding: 0;
@@ -33,34 +35,51 @@
 		max-height: 90vh;
 	}
 
-	.imgXX-modal-close {
-		position: absolute;
-		top: 10px;
-		right: 10px;
+	.imgXX-modal-close-button {
+		position: fixed;
+		top: 1rem;
+		right: 1rem;
+		z-index: 1000;
 		border: none;
 		background: transparent;
 		color: white;
 		font-size: 1.5rem;
 		cursor: pointer;
 	}
+
+	/* モーダル用 figure スタイル */
+	.imgXX-figure {
+		display: inline-block;
+		border: thin #000 solid;
+		border-radius: 8px;
+		padding: 10px;
+		margin: 5px;
+		width: 80%;
+		max-width: 400px;
+		box-shadow: 0 0 10px gray;
+		background: radial-gradient(rgb(24, 24, 24) 0%, rgb(255, 255, 255) 80%);
+	}
+
+	.imgXX-figure figcaption {
+		font: sans-serif;
+	}
+
+	/* サムネイル画像用スタイル */
+	.imgXX-thumb {
+		width: min(100%, 400px);
+		vertical-align: bottom;
+		border: thin #000 solid;
+		cursor: pointer;
+	}
 </style>
-<figure style="display:inline-block;
-	border:thin #000 solid;
-	border-radius:8px;
-	padding:10px;
-	margin:5px;
-	width:80%;
-	max-width:400px;
-	box-shadow:0px 0px 10px gray;
-	background:radial-gradient(rgb(24,24,24) 0%, rgb(255,255,255) 80%);
-	">
-	<figcaption style="font:sans-serif;">{{ $caption }}</figcaption>
-	<img id="imgXX-thumb-{{ $count }}" src="{{ $resized.Permalink }}" alt="{{ .Get " alt" }}" style="width:min(100%,400px);
-		vertical-align:bottom;
-		border:thin #000 solid;
-		cursor:pointer;" onclick="document.getElementById('imgXX-modal-{{ $count }}').showModal();">
+{{ .Page.Scratch.Set "imgXXStyleInjected" true }}
+{{ end }}
+<figure class="imgXX-figure">
+	<figcaption>{{ $caption }}</figcaption>
+	<img id="imgXX-thumb-{{ $count }}" class="imgXX-thumb" src="{{ $resized.Permalink }}" alt="{{ .Get " alt" }}"
+		onclick="document.getElementById('imgXX-modal-{{ $count }}').showModal();">
 	<dialog id="imgXX-modal-{{ $count }}" class="imgXX-modal" onclick="if(event.target===this) this.close();">
-		<button class="imgXX-modal-close" aria-label="Close" onclick="this.closest('dialog').close();">×</button>
+		<button class="imgXX-modal-close-button" aria-label="Close" onclick="this.closest('dialog').close();">×</button>
 		<img src="{{ $original.Permalink }}" alt="{{ .Get " alt" }}">
 	</dialog>
 </figure>
