@@ -12,7 +12,8 @@
 {{ $count := .Page.Scratch.Get "imgXXcounter" | default 0 }}
 {{ $count = add $count 1 }}
 {{ .Page.Scratch.Set "imgXXcounter" $count }}
-{{ $resized := $original.Fit "400x400 jpg q70" }}
+{{ $resized := $original.Fit "900x900 webp q75" }}
+{{ $highQualityWebp := $original.Fit "2500x2500 webp q85" }}
 {{/* ページ内で一度だけCSSスタイルを注入するためのフラグチェック */}}
 {{ if not (.Page.Scratch.Get "imgXXStyleInjected") }}
 <style>
@@ -80,7 +81,7 @@
 		onclick="document.getElementById('imgXX-modal-{{ $count }}').showModal();">
 	<dialog id="imgXX-modal-{{ $count }}" class="imgXX-modal" onclick="if(event.target===this) this.close();">
 		<button class="imgXX-modal-close-button" aria-label="Close" onclick="this.closest('dialog').close();">×</button>
-		<img src="{{ $original.Permalink }}" alt="{{ .Get " alt" }}">
+		<img src="{{ $highQualityWebp.Permalink }}" alt="{{ .Get " alt" }}">
 	</dialog>
 </figure>
 {{ end }}
