@@ -64,10 +64,10 @@
 	.imgXX-figure figcaption {
 		font: sans-serif;
 	}
-
 	/* サムネイル画像用スタイル */
 	.imgXX-thumb {
 		width: min(100%, 400px);
+		height: auto;
 		vertical-align: bottom;
 		border: thin #000 solid;
 		cursor: pointer;
@@ -78,6 +78,7 @@
 <figure class="imgXX-figure">
 	<figcaption>{{ $caption }}</figcaption>
 	<img id="imgXX-thumb-{{ $count }}" class="imgXX-thumb" src="{{ $resized.Permalink }}" alt="{{ .Get " alt" }}"
+		width="{{ $resized.Width }}" height="{{ $resized.Height }}" loading="lazy"
 		onclick="document.getElementById('imgXX-modal-{{ $count }}').showModal();">
 	<dialog id="imgXX-modal-{{ $count }}" class="imgXX-modal" onclick="if(event.target===this) this.close();">
 		<button class="imgXX-modal-close-button" aria-label="Close" onclick="this.closest('dialog').close();">×</button>
