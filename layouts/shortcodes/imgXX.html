@@ -64,6 +64,7 @@
 	.imgXX-figure figcaption {
 		font: sans-serif;
 	}
+
 	/* サムネイル画像用スタイル */
 	.imgXX-thumb {
 		width: min(100%, 400px);
@@ -73,16 +74,26 @@
 		cursor: pointer;
 	}
 </style>
+<script>
+	// 高解像度画像を遅延読み込みする関数
+	function loadHighResImage(modalId) {
+		const modal = document.getElementById(modalId);
+		const img = modal.querySelector('img');
+		if (img && img.getAttribute('data-src') && !img.getAttribute('src')) {
+			img.setAttribute('src', img.getAttribute('data-src'));
+		}
+	}
+</script>
 {{ .Page.Scratch.Set "imgXXStyleInjected" true }}
 {{ end }}
 <figure class="imgXX-figure">
 	<figcaption>{{ $caption }}</figcaption>
 	<img id="imgXX-thumb-{{ $count }}" class="imgXX-thumb" src="{{ $resized.Permalink }}" alt="{{ .Get " alt" }}"
 		width="{{ $resized.Width }}" height="{{ $resized.Height }}" loading="lazy"
-		onclick="document.getElementById('imgXX-modal-{{ $count }}').showModal();">
+		onclick="document.getElementById('imgXX-modal-{{ $count }}').showModal(); loadHighResImage('imgXX-modal-{{ $count }}');">
 	<dialog id="imgXX-modal-{{ $count }}" class="imgXX-modal" onclick="if(event.target===this) this.close();">
 		<button class="imgXX-modal-close-button" aria-label="Close" onclick="this.closest('dialog').close();">×</button>
-		<img src="{{ $highQualityWebp.Permalink }}" alt="{{ .Get " alt" }}">
+		<img data-src="{{ $highQualityWebp.Permalink }}" alt="{{ .Get " alt" }}">
 	</dialog>
 </figure>
 {{ end }}
