@@ -2,12 +2,20 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/syntax.css">
-    <link rel="stylesheet" href="/css/single.css">
+    <!-- 共通で必要なCSSを読み込み -->
+    <link rel="stylesheet" href="/css/baseof.css">
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/footer.css">
+
+    <!-- ページタイプに応じて必要なCSSのみを読み込み -->
+    {{ if .IsPage }}
+    <link rel="stylesheet" href="/css/single.css">
+    <link rel="stylesheet" href="/css/syntax.css">
+    {{ else if .IsHome }}
     <link rel="stylesheet" href="/css/list.css">
-    <link rel="stylesheet" href="/css/baseof.css">
+    {{ else if .IsSection }}
+    <link rel="stylesheet" href="/css/list.css">
+    {{ end }}
     {{ if .HasShortcode "3dmodel" }}
     <script async type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     {{ end }}
