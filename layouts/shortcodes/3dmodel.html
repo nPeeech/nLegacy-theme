@@ -5,5 +5,22 @@
 
 {{ $3dmodel := .Page.Resources.GetMatch $src }}
 {{ if $3dmodel }}
-<model-viewer src="{{ $3dmodel.Permalink }}" alt="A 3D model of {{ $3dmodel }}" camera-controls style="width: 100%; height: min(50vh, 900px);"></model-viewer>
+<div class="model-placeholder" data-model-src="{{ $3dmodel.Permalink }}" style="width: 100%; height: min(50vh, 900px); background: #f0f0f0; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+  <span>クリックして3Dモデルを読み込む</span>
+</div>
+<script>
+(function(){
+  var placeholder = document.currentScript.previousElementSibling;
+  placeholder.addEventListener('click', function(){
+    var src = placeholder.getAttribute('data-model-src');
+    var mv = document.createElement('model-viewer');
+    mv.setAttribute('src', src);
+    mv.setAttribute('alt', 'A 3D model of {{ $3dmodel.Name }}');
+    mv.setAttribute('camera-controls', '');
+    mv.style.width = '100%';
+    mv.style.height = 'min(50vh, 900px)';
+    placeholder.parentNode.replaceChild(mv, placeholder);
+  });
+})();
+</script>
 {{ end }}
