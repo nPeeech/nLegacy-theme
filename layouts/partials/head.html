@@ -10,9 +10,14 @@
       {{- (resources.Get "css/single.css" | minify).Content | safeCSS -}}
     {{- end }}
     </style>
-    <link rel="stylesheet" href="{{ (resources.Get "css/footer.css" | minify).RelPermalink }}">
+    <!-- Lazy-load footer.css -->
+    <link rel="stylesheet" href="{{ (resources.Get "css/footer.css" | minify).RelPermalink }}" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="{{ (resources.Get "css/footer.css" | minify).RelPermalink }}"></noscript>
+
     {{- if .IsPage }}
-    <link rel="stylesheet" href="{{ (resources.Get "css/syntax.css" | minify).RelPermalink }}">
+    <!-- Lazy-load syntax.css for code blocks -->
+    <link rel="stylesheet" href="{{ (resources.Get "css/syntax.css" | minify).RelPermalink }}" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="{{ (resources.Get "css/syntax.css" | minify).RelPermalink }}"></noscript>
     {{- end }}
     {{ if .HasShortcode "3dmodel" }}
     <script async type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
