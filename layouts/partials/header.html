@@ -5,18 +5,8 @@
                 style="filter: {{ range $val := seq 10 }} drop-shadow({{$val}}px {{$val}}px 0px rgb(59, 0, 102)) {{ end }};">
                 {{ .Site.Title }}
             </a>
-        </div>
-        {{ if eq hugo.Environment "production" }}
-        {{ with .Site.Params.IframeAccessCounterUrl}}
-        <iframe src="{{ . }}" frameborder="0" scrolling="no" style="height: 2rem;"></iframe>
-        {{ else }}
-        <div id="counter-wrapper">
-            あなたは<div id="counter"></div>人目の訪問者です
-        </div>
-        {{ end }}
-        {{ else }}
-        Access-counter are only enabled in a production environment. 
-        {{ end }}
+        </div>        
+        {{- partial "access-counter.html" . -}}
     </div>
     <div id="taxonomy-menu">
         {{ range $taxonomyname, $taxonomy := .Site.Taxonomies }}

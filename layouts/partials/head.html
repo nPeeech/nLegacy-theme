@@ -5,7 +5,8 @@
     <style>
     {{- (resources.Get "css/baseof.css" | minify).Content | safeCSS -}}
     {{- (resources.Get "css/header.css" | minify).Content | safeCSS -}}
-      {{- (resources.Get "css/list.css" | minify).Content | safeCSS -}}
+    {{- (resources.Get "css/list.css" | minify).Content | safeCSS -}}
+    {{- (resources.Get "css/access-counter.css").Content | safeCSS -}}
     {{- if .IsPage }}
       {{- (resources.Get "css/single.css" | minify).Content | safeCSS -}}
     {{- end }}
@@ -14,11 +15,15 @@
     <link rel="stylesheet" href="{{ (resources.Get "css/footer.css" | minify).RelPermalink }}" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="{{ (resources.Get "css/footer.css" | minify).RelPermalink }}"></noscript>
 
+    <link rel="preload" href="/fonts/dseg/DSEG7ClassicMini-Bold.woff2" as="font" type="font/woff2" crossorigin>
+
     {{- if .IsPage }}
     <!-- Lazy-load syntax.css for code blocks -->
     <link rel="stylesheet" href="{{ (resources.Get "css/syntax.css" | minify).RelPermalink }}" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="{{ (resources.Get "css/syntax.css" | minify).RelPermalink }}"></noscript>
     {{- end }}
+
+    <script defer src="{{- (resources.Get "js/access-counter.js" | minify).RelPermalink -}}"></script>
     {{ if .HasShortcode "3dmodel" }}
     <script defer type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     {{ end }}

@@ -1,0 +1,14 @@
+{{ if eq hugo.Environment "production" }}
+<div id="counter-wrapper">
+    <span class="counter-text">訪問者数:</span>
+    <div class="counter-display-wrapper" style="display: inline-block;">
+        <span class="counter-background dseg7">88888888</span>
+        <span class="counter-display dseg7" id="counter-display">!LOADING</span>
+    </div>
+    <span class="counter-text"></span>
+</div>
+{{ else }}
+<div id="counter-wrapper">
+    <span class="counter-text">Access-counter is only enabled in production environment.</span>
+</div>
+{{ end }}

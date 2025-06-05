@@ -1,0 +1,58 @@
+/* Access Counter Styles */
+@font-face {
+    font-family: "DSEG7";
+    /*
+      Font "DSEG" by けしかん
+      LICENSE FILE: /fonts/dseg/DSEG-LICENSE.txt
+    */
+    src:
+        url("/fonts/dseg/DSEG7ClassicMini-Bold.woff2"),
+}
+
+#counter-wrapper {
+    position: relative;
+    display: block;
+    line-height: 2;
+    background: none;
+}
+
+.counter-text {
+    font-size: 0.9rem;
+    vertical-align: middle;
+    background-color: rgb(223, 183, 213);
+    color: black;
+}
+
+.counter-display-wrapper {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    
+}
+
+.counter-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    color: #444444;
+    background-color: black;
+    font-family: 'DSEG7';
+    line-height: 2;
+    pointer-events: none;
+}
+
+.counter-display {
+    position: relative;
+    z-index: 2;
+    color: lime;
+    background-color: transparent;
+    font-family: 'DSEG7';
+    line-height: 2;
+}
+
+.dseg7 {
+    font-family: 'DSEG7';
+    font-weight: normal;
+    font-style: normal;
+}
